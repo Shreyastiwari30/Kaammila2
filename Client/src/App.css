@@ -1,0 +1,25 @@
+body{
+  background: linear-gradient(to left, #1f2937, #1d4ed8, #111827);
+
+}
+
+
+.glow-effect {
+  border: 1px solid rgba(139, 92, 246, 0.5); /* A violet border */
+  box-shadow: 0 0 5px rgba(139, 92, 246, 0.4); /* A soft glow */
+  transition: all 0.3s ease-in-out; 
+}
+
+.glow-effect,
+.glow-effect:focus-within {
+   border-color: #a78bfa; 
+    box-shadow: 0 0 15px rgba(167, 139, 250, 0.8),
+              0 0 20px rgba(167, 139, 250, 0.6); /* Multi-layered glow */
+}
+
+.glow-effect1:hover,
+.glow-effect:focus-within {
+   border-color: #a78bfa; 
+    box-shadow: 0 0 15px rgba(167, 139, 250, 0.8),
+              0 0 20px rgba(167, 139, 250, 0.6); /* Multi-layered glow */
+}
