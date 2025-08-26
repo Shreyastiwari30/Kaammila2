@@ -1,7 +1,7 @@
 import './App.css'
 import Navbar from './components/Navbar'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
-import Login from './components/auth/login'
+import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import Home from './components/Home'
 import { Toaster } from './components/ui/sonner'
