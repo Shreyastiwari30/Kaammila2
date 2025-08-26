@@ -2,8 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import Job from './Job';
 import { useDispatch, useSelector } from 'react-redux';
-import useGetAllJobs from '@/hooks/useGetAllJobs';
-
+import useGetAllJobs from '../hooks/useGetAlljobs';
 
 
 const Browse = () => {
