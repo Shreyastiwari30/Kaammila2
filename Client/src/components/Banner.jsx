@@ -1,5 +1,5 @@
 import React from "react";
-import bgImage from "../assets/Bg.png";
+import Bg from "../assets/Bg.png";
 import { Link } from "react-router-dom";
 
 const Banner = () => {
@@ -7,7 +7,7 @@ const Banner = () => {
     <>
       <div
         className="glow-effect bg-cover bg-center w-11/12 sm:w-3/4 md:w-[55%] mx-auto mt-12 rounded-2xl p-6 sm:p-8 text-white flex flex-col justify-between shadow-lg hover:scale-105 duration-700"
-        style={{ backgroundImage: `url(${bgImage})` }}
+        style={{ backgroundImage: `url(${Bg})` }}
       >
         <h1 className="text-base sm:text-lg md:text-2xl font-bold text-start">
           Need help to get started?
