@@ -12,7 +12,6 @@ export const postJob = async (req, res) => {
       location,
       jobType,
       position,
-      companyId 
     } = req.body
 
     const userId = req.id;
@@ -24,8 +23,7 @@ export const postJob = async (req, res) => {
       !salary ||
       !location ||
       !jobType ||
-      !position ||
-      !companyId
+      !position
     ) {
       return res.status(400).json({
         message: "Something is missing.",
