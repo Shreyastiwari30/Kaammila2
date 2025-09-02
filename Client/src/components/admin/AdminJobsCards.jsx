@@ -18,9 +18,7 @@ const AdminJobsCards = () => {
 
   if (!filterJobs || filterJobs.length === 0) {
     return (
-      <p className="text-gray-400 text-center mt-10 text-lg">
-        No jobs found.
-      </p>
+      <p className="text-gray-400 text-center mt-10 text-lg">No jobs found.</p>
     );
   }
 
@@ -32,7 +30,9 @@ const AdminJobsCards = () => {
           className="glow-effect1 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 p-6 rounded-2xl shadow-xl transform hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between border border-gray-700"
         >
           <div>
-            <h2 className="text-2xl font-semibold text-white mb-2 truncate">{job.title}</h2>
+            <h2 className="text-2xl font-semibold text-white mb-2 truncate">
+              {job.title}
+            </h2>
             <p className="text-gray-300 mb-3 line-clamp-3">{job.description}</p>
 
             <div className="text-gray-400 text-sm space-y-1">
@@ -41,9 +41,9 @@ const AdminJobsCards = () => {
                   <strong>Requirements:</strong> {job.requirements}
                 </p>
               )}
-              {job.salary && (
+              {job.budget && (
                 <p>
-                  <strong>Salary:</strong> {job.salary}
+                  <strong>Budget: </strong> {job.budget}
                 </p>
               )}
               {job.location && (
@@ -51,6 +51,7 @@ const AdminJobsCards = () => {
                   <strong>Location:</strong> {job.location}
                 </p>
               )}
+              
               {job.jobType && (
                 <p>
                   <strong>Job Type:</strong> {job.jobType}

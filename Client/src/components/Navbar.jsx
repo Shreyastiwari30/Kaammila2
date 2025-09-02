@@ -37,7 +37,8 @@ const Navbar = () => {
 
   const navLinks = user && user.role === "Recruiter"
     ? [
-        { to: "/admin/applicants", label: "Applications" },
+        {to: "/admin/dashboard",label:"Dashboard"},
+        { to: "/admin/adminstats", label: "Analytics" },
         { to: "/admin/viewjobs", label: "Jobs" },
       ]
     : [
@@ -47,7 +48,7 @@ const Navbar = () => {
       ];
 
   return (
-    <div className="bg-transparent text-slate-300 mb-10">
+    <div className="bg-transparent  text-slate-300 mb-10">
       <div className="flex justify-between items-center p-5 max-w-7xl m-auto h-16">
         
         

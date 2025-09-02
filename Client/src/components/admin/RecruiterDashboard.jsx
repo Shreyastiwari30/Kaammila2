@@ -7,8 +7,16 @@ import { Link } from "react-router-dom";
 
 const RecruiterHome = () => {
   return (
-    <div className="min-h-screen text-white bg-[linear-gradient(to_left,#1f2937,#1d4ed8,#111827)]">
-      <Navbar />
+    <div className="min-h-screen text-white bg-url">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/src/assets/recruiterbg.png')", 
+          backgroundColor: "rgba(30, 0, 50, 0.7)", 
+          backgroundBlendMode: "multiply", 
+        }}
+      >
+        <Navbar />
 
      
       <div className="max-w-6xl mx-auto px-6 py-12 text-center">
@@ -39,10 +47,10 @@ const RecruiterHome = () => {
         <Card className="glow-effect1 bg-white/10 border border-white/20 text-white shadow-lg rounded-2xl">
           <CardContent className="p-6 flex flex-col items-center text-center">
             <Users className="h-10 w-10 text-green-400 mb-3" />
-            <h2 className="text-xl font-semibold">Applicants</h2>
+            <h2 className="text-xl font-semibold">Anayltics</h2>
             <p className="text-zinc-400 mt-2">Track and review applications</p>
             <Button className="mt-4 bg-green-500 hover:bg-green-600 text-white rounded-lg px-4 py-2">
-              <Link to='/admin/applicants'>View Applicants</Link>
+              <Link to='/admin/adminstats'>View Stats</Link>
             </Button>
           </CardContent>
         </Card>
@@ -58,6 +66,9 @@ const RecruiterHome = () => {
           </CardContent>
         </Card>
       </div>
+      </div>
+      
+      
     </div>
   );
 };

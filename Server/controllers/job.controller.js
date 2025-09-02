@@ -1,26 +1,28 @@
 import { Job } from "../models/jobmodel.js";
 import mongoose from "mongoose";
 
-
 export const postJob = async (req, res) => {
   try {
     const {
       title,
       description,
       requirements,
-      salary,
+      budget,
+      duration,
       location,
       jobType,
       position,
-    } = req.body
+    } = req.body;
 
     const userId = req.id;
 
+    // validation
     if (
       !title ||
       !description ||
       !requirements ||
-      !salary ||
+      !budget ||
+      !duration ||
       !location ||
       !jobType ||
       !position
@@ -34,10 +36,11 @@ export const postJob = async (req, res) => {
     const job = await Job.create({
       title,
       description,
-      requirements: requirements.split(","),
-      salary: Number(salary),
+      requirements: requirements.split(","), // comma separated
+      budget, // store budget as number
+      duration, // e.g. "2 hours" / "1 day"
       location,
-      jobType,
+      jobType, // microjob category
       position,
       created_by: userId,
     });
@@ -53,20 +56,23 @@ export const postJob = async (req, res) => {
   }
 };
 
-
 export const getAllJobs = async (req, res) => {
   try {
-    const keyword = req.query.keyword || "";
-    const query = {
-      $or: [
-        { title: { $regex: keyword, $options: "i" } },
-        { description: { $regex: keyword, $options: "i" } },
-      ],
-    };
+    const keyword = req.query.keyword?.trim();
+    let query = {};
+
+    if (keyword && keyword.length > 0) {
+      query = {
+        $or: [
+          { title: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+        ],
+      };
+    }
 
     const jobs = await Job.find(query)
       .populate("company")
-      .populate("created_by", "fullname email") 
+      .populate("created_by", "fullname email")
       .sort({ createdAt: -1 });
 
     return res.status(200).json({ jobs, success: true });
@@ -75,8 +81,6 @@ export const getAllJobs = async (req, res) => {
     return res.status(500).json({ message: "Server error", success: false });
   }
 };
-
-
 
 export const getJobById = async (req, res) => {
   try {
@@ -89,7 +93,9 @@ export const getJobById = async (req, res) => {
       });
     }
 
-    const job = await Job.findById(id).populate("applications");
+    const job = await Job.findById(id)
+      .populate("applications")
+      .populate("created_by", "fullname email phoneNumber"); // <-- use 'name', not 'fullname'
 
     if (!job) {
       return res.status(404).json({ message: "Job not found", success: false });
@@ -103,24 +109,23 @@ export const getJobById = async (req, res) => {
 };
 
 export const getAdminJobs = async (req, res) => {
-    try {
-        const adminId = req.id;
-        const jobs = await Job.find({ created_by: adminId }).populate({
-            path:'company',
-            createdAt:-1
-        });
-        if (!jobs) {
-            return res.status(404).json({
-                message: "Jobs not found.",
-                success: false
-            })
-        };
-        return res.status(200).json({
-            jobs,
-            success: true
-        })
-    } catch (error) {
-        console.log(error);
+  try {
+    const adminId = req.id;
+    const jobs = await Job.find({ created_by: adminId }).populate({
+      path: "company",
+      createdAt: -1,
+    });
+    if (!jobs) {
+      return res.status(404).json({
+        message: "Jobs not found.",
+        success: false,
+      });
     }
-
+    return res.status(200).json({
+      jobs,
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

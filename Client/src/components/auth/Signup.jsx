@@ -62,14 +62,29 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-l from-gray-900 via-blue-700 to-gray-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#1d1b38] to-[#4c2d9e] text-white">
+      <style>
+        {`
+        @keyframes pulse-glow {
+          0%, 100% {
+            box-shadow: 0 0 10px #8b5cf6, 0 0 20px #8b5cf6, 0 0 30px #8b5cf6, 0 0 40px rgba(139, 92, 246, 0.4);
+          }
+          50% {
+            box-shadow: 0 0 15px #8b5cf6, 0 0 25px #8b5cf6, 0 0 35px #8b5cf6, 0 0 45px rgba(139, 92, 246, 0.6);
+          }
+        }
+        .form-animate {
+          animation: pulse-glow 3s ease-in-out infinite;
+        }
+        `}
+      </style>
       <Navbar />
       <div className="flex justify-center items-center max-w-7xl mx-auto">
         <form
           onSubmit={submithandler}
-          className="bg-gray-900/70 w-full sm:w-1/2 border border-gray-700 rounded-2xl p-6 my-10 shadow-xl backdrop-blur-md"
+          className="bg-gray-900/70 w-full sm:w-1/2 border border-gray-700 rounded-2xl p-6 my-10 shadow-xl backdrop-blur-md form-animate"
         >
-          <h1 className="font-bold text-3xl my-5 text-yellow-400 text-center">
+          <h1 className="font-bold text-3xl my-5 text-purple-400 text-center">
             Signup
           </h1>
 
@@ -167,7 +182,7 @@ const Signup = () => {
           ) : (
             <Button
               type="submit"
-              className="w-full py-4 mt-5 bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+              className="w-full py-4 mt-5 bg-purple-500 hover:bg-purple-600 text-black font-semibold"
             >
               Signup
             </Button>
@@ -175,7 +190,7 @@ const Signup = () => {
 
           <span className="text-sm text-gray-300">
             Already have an account?{" "}
-            <Link className="text-yellow-400 hover:underline" to="/login">
+            <Link className="text-purple-400 hover:underline" to="/login">
               Login now
             </Link>
           </span>

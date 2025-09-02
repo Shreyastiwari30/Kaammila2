@@ -16,6 +16,7 @@ import CreateJob from './components/admin/CreateJob'
 import RecruiterDashboard from './components/admin/RecruiterDashboard'
 import Applicants from './components/admin/Applicants'
 import ViewJobs from './components/admin/ViewJobs'
+import AdminStats from './components/admin/AdminStats'
 const approuter=createBrowserRouter([
   {
     path:'/',
@@ -57,13 +58,17 @@ const approuter=createBrowserRouter([
     path:'/admin/createjob',
     element:<CreateJob/>
   },
-  {
-    path:'/admin/applicants',
-    element:<Applicants/>
+   {
+    path:"/admin/jobs/:id/applicants",
+    element:<Applicants/> 
   },
   {
     path:'/admin/viewjobs',
     element: <ViewJobs/>
+  },
+  {
+    path:'/admin/adminstats',
+    element: <AdminStats/>
   },
   {
     path:'/profile',

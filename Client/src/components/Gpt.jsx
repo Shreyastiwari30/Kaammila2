@@ -75,7 +75,7 @@ function Gpt() {
   const activeChat = chats.find((chat) => chat.id === activeChatId);
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-r from-gray-800 via-blue-700 to-gray-900 text-gray-100">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-r from-gray-800 via-purple-950 to-gray-900 text-gray-100">
       {/* Sidebar */}
       <div
         className={`${

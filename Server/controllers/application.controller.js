@@ -78,7 +78,7 @@ export const getApplicants = async (req, res) => {
       path: 'applications',
       populate: {
         path: 'applicant', 
-        select: 'name email skills' 
+        select: 'fullname email phoneNumber' 
       },
       options: { sort: { createdAt: -1 } }
     });
@@ -133,3 +133,41 @@ export const updateStatus = async (req,res) => {
         console.log(error);
     }
 }
+
+export const getStats = async (req, res) => {
+  try {
+    const userId = req.id;
+
+    // Fetch all jobs by this user
+    const jobs = await Job.find({ created_by: userId }).populate('applications');
+
+    let totalJobs = jobs.length;
+    let totalApplicants = 0;
+    let acceptedApplicants = 0;
+    let rejectedApplicants = 0;
+
+    const topJobs = jobs.map(job => {
+      totalApplicants += job.applications.length;
+      job.applications.forEach(app => {
+        if (app.status === "Accepted") acceptedApplicants++;
+        if (app.status === "Rejected") rejectedApplicants++;
+      });
+      return { title: job.title, applicants: job.applications.length };
+    });
+
+    res.status(200).json({
+      success: true,
+      stats: {
+        totalJobs,
+        totalApplicants,
+        acceptedApplicants,
+        rejectedApplicants,
+        topJobs
+      }
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};

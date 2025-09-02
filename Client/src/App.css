@@ -1,25 +1,79 @@
-body{
-  background: linear-gradient(to left, #1f2937, #1d4ed8, #111827);
+/* Your existing styles for the background */
+body {
+  background-image: url('./assets/mainbg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* Add this to enable positioning for the pseudo-element */
+  position: relative;
+  min-height: 100vh;
+}
 
+/* Your existing styles for the document structure */
+html, body, #root { /* #root is often the ID of the main React app container */
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrollbar if content overflows */
+}
+
+/*
+ * Option 1: Add a Blur Effect
+ * Uncomment this section to use it.
+ */
+/*
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./assets/mainbg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  filter: blur(2px);  
+  z-index: -1;
+}
+*/
+
+/*
+ * Option 2: Add a Semi-Transparent Overlay (Shadow)
+ * Uncomment this section to use it. This is generally better for readability.
+ */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* This creates a semi-transparent black overlay */
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the last value (0.5) for darkness */
+  z-index: -1;
 }
 
 
-.glow-effect {
-  border: 1px solid rgba(139, 92, 246, 0.5); /* A violet border */
-  box-shadow: 0 0 5px rgba(139, 92, 246, 0.4); /* A soft glow */
-  transition: all 0.3s ease-in-out; 
+/* Make sure the main content is on top */
+.App {
+  position: relative;
+  z-index: 1;
 }
 
-.glow-effect,
+
+/* Your custom classes using @apply for Tailwind utilities */
+.glow-effect{
+  @apply border-2 border-violet-400/50 shadow-md shadow-violet-400/40 transition-all duration-300 ease-in-out;
+}
+
+.glow-effect2,
 .glow-effect:focus-within {
-   border-color: #a78bfa; 
-    box-shadow: 0 0 15px rgba(167, 139, 250, 0.8),
-              0 0 20px rgba(167, 139, 250, 0.6); /* Multi-layered glow */
+  @apply border-violet-400 shadow-lg shadow-violet-400/80;
 }
 
-.glow-effect1:hover,
-.glow-effect:focus-within {
-   border-color: #a78bfa; 
-    box-shadow: 0 0 15px rgba(167, 139, 250, 0.8),
-              0 0 20px rgba(167, 139, 250, 0.6); /* Multi-layered glow */
+
+
+.form-animate {
+          animation: pulse-glow 3s ease-in-out infinite;
 }

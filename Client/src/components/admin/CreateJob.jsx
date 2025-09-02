@@ -15,7 +15,8 @@ const CreateJob = () => {
     title: "",
     description: "",
     requirements: "",
-    salary: "",
+    budget: "",
+    duration: "",
     location: "",
     jobType: "",
     position: 0,
@@ -96,13 +97,25 @@ const CreateJob = () => {
             </div>
 
             <div>
-              <Label>Salary</Label>
+              <Label>Budget</Label>
               <Input
                 type="text"
-                name="salary"
-                value={input.salary}
+                name="budget"
+                value={input.budget}
                 onChange={changeEventHandler}
-                placeholder="Salary (optional)"
+                placeholder="e.g. ₹500 - ₹2000"
+                className="my-1 bg-gray-700 text-gray-100 border-gray-600"
+              />
+            </div>
+
+            <div>
+              <Label>Duration</Label>
+              <Input
+                type="text"
+                name="duration"
+                value={input.duration}
+                onChange={changeEventHandler}
+                placeholder="e.g. 2 hours, 1 day, multi-day task"
                 className="my-1 bg-gray-700 text-gray-100 border-gray-600"
               />
             </div>
@@ -120,18 +133,27 @@ const CreateJob = () => {
             </div>
 
             <div>
-              <Label>Job Type</Label>
-              <Input
-                type="text"
-                name="jobType"
-                value={input.jobType}
-                onChange={changeEventHandler}
-                placeholder="Full-time, Part-time..."
-                className="my-1 bg-gray-700 text-gray-100 border-gray-600"
-              />
-            </div>
+  <Label>Job Type</Label>
+  <select
+    name="jobType"
+    value={input.jobType}
+    onChange={changeEventHandler}
+    className="my-1 bg-gray-700 text-gray-100 border-gray-600 rounded-md w-full p-2"
+  >
+    <option value="">Select job type</option>
+    <option value="Delivery & Pickup">Delivery & Pickup</option>
+    <option value="House Cleaning">House Cleaning</option>
+    <option value="Repairs & Maintenance">Repairs & Maintenance</option>
+    <option value="Tutoring & Lessons">Tutoring & Lessons</option>
+    <option value="Pet Care">Pet Care</option>
+    <option value="Event Help">Event Help</option>
+    <option value="Grocery Shopping">Grocery Shopping</option>
+    <option value="Gardening">Gardening</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
 
-            
+
             <div>
               <Label>No of Positions</Label>
               <Input
