@@ -18,9 +18,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const corsOption = {
-    origin: 'http://localhost:5173',
-    credentials: true
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",                 // local frontend
+    "https://kaammila-frontend.vercel.app"   // deployed frontend
+  ],
+  credentials: true,
 };
 app.use(cors(corsOption));
 
