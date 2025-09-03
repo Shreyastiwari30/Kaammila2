@@ -11,9 +11,10 @@ const filterData = [
       "Delivery & Pickup",
       "House Cleaning",
       "Repairs & Maintenance",
-      "Tutor",
-      "Cab",
+      "Tutoring & Lessons",
+      "Pet Care",
       "Event Help",
+      "Other"
     ],
   },
   {
