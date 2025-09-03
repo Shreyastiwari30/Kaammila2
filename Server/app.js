@@ -21,7 +21,7 @@ app.use(cookieParser());
 const corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://kaammila2-eat9-60onnm6rq-shreyastiwari30s-projects.vercel.app/"
+    "https://kaammila2-eat9-60onnm6rq-shreyastiwari30s-projects.vercel.app"
   ],
   credentials: true,
 };
