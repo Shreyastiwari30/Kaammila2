@@ -20,12 +20,13 @@ app.use(cookieParser());
 
 const corsOptions = {
   origin: [
-    "http://localhost:5173",                 // local frontend
-    "https://kaammila-frontend.vercel.app"   // deployed frontend
+    "http://localhost:5173",
+    "https://kaammila-frontend.vercel.app"
   ],
   credentials: true,
 };
-app.use(cors(corsOption));
+
+app.use(cors(corsOptions));
 
 
 // Connect to MongoDB before starting server
