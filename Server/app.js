@@ -23,11 +23,11 @@ const corsOptions = {
     "http://localhost:5173",
     "https://kaammila2-eat9-60onnm6rq-shreyastiwari30s-projects.vercel.app"
   ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
-
 
 // Connect to MongoDB before starting server
 connectDB().then(() => {
