@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
 import { useDispatch } from "react-redux";
@@ -7,14 +7,44 @@ import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
   const [query, setQuery] = useState("");
+  const [currentText, setCurrentText] = useState("");
+  const [textIndex, setTextIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const words = ["Dream Job", "Perfect Gig", "Next Opportunity", "Career Move"];
 
   const searchJobHandler = () => {
     const trimmedQuery = query.trim();
     dispatch(setSearchedQuery(trimmedQuery));
     navigate("/browse");
   };
+
+  // Typing effect
+  useEffect(() => {
+    const currentWord = words[textIndex];
+    let typingSpeed = isDeleting ? 80 : 120;
+
+    const typing = setTimeout(() => {
+      if (!isDeleting && charIndex < currentWord.length) {
+        setCurrentText((prev) => prev + currentWord[charIndex]);
+        setCharIndex((prev) => prev + 1);
+      } else if (isDeleting && charIndex > 0) {
+        setCurrentText((prev) => prev.slice(0, -1));
+        setCharIndex((prev) => prev - 1);
+      } else if (!isDeleting && charIndex === currentWord.length) {
+        setTimeout(() => setIsDeleting(true), 1000);
+      } else if (isDeleting && charIndex === 0) {
+        setIsDeleting(false);
+        setTextIndex((prev) => (prev + 1) % words.length);
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(typing);
+  }, [charIndex, isDeleting, textIndex]);
 
   return (
     <div className="px-4 md:px-8 lg:px-16">
@@ -24,11 +54,12 @@ const HeroSection = () => {
             No.1 Job Hunt Website
           </span>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-100 tracking-tight transition-colors duration-300 hover:text-fuchsia-300">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-100 tracking-tight transition-colors duration-300">
             Search, Apply & <br className="hidden sm:block" />
             Get Your{" "}
             <span className="gradient-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-300 bg-clip-text text-transparent">
-              Dream Job
+              {currentText}
+              <span className="border-r-2 border-cyan-300 animate-pulse ml-1"></span>
             </span>
           </h1>
 

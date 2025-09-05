@@ -5,8 +5,10 @@ import { Briefcase, Users, PlusCircle } from "lucide-react";
 import Navbar from "../Navbar";
 import { Link } from "react-router-dom";
 
+
 const RecruiterHome = () => {
   return (
+    <>
     <div className="min-h-screen text-white bg-url">
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -17,6 +19,7 @@ const RecruiterHome = () => {
         }}
       >
         <Navbar />
+        
 
      
       <div className="max-w-6xl mx-auto px-6 py-12 text-center">
@@ -66,10 +69,13 @@ const RecruiterHome = () => {
           </CardContent>
         </Card>
       </div>
+      
       </div>
-      
-      
+         
     </div>
+    
+    
+    </>
   );
 };
 
