@@ -19,30 +19,41 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "https://kaammila2-eat9-60onnm6rq-shreyastiwari30s-projects.vercel.app",
-    "https://kaammila2-eat9.vercel.app"
-  ],
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "http://localhost:5173", 
+      "https://kaammila2-eat9.vercel.app" 
+    ];
+
+    if (!origin || allowedOrigins.includes(origin) || /\.vercel\.app$/.test(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
 
-// Connect to MongoDB before starting server
+// ✅ Default route for testing
+app.get("/", (req, res) => {
+  res.json({ message: "Backend is running 🚀" });
+});
+
+// Connect to MongoDB and start server
 connectDB().then(() => {
     console.log('MongoDB connected');
 
     const PORT = process.env.PORT || 3000;
 
-    // Routes
+    // API Routes
     app.use('/api/v1/user', userRoute);
     app.use('/api/v1/company', companyRoute);
     app.use('/api/v1/job', jobRoute);
     app.use('/api/v1/application', applicationRoute);
    
-    // Start server
     app.listen(PORT, () => {
         console.log(`Server running at port ${PORT}`);
     });
