@@ -14,8 +14,6 @@ const filterData = [
       "Tutoring & Lessons",
       "Pet Care",
       "Event Help",
-      "Freelance",
-      "Part-time",
       "Other"
     ],
   },
@@ -28,8 +26,9 @@ const filterData = [
     array: ["₹0 - ₹500", "₹500 - ₹2000", "₹2000 - ₹5000", "₹5000+"],
   },
   {
-    filterType: "Duration",
-    array: ["Less than 1 hour", "1-4 hours", "Same day", "Multi-day task"],
+    filterType: "Type",
+    array: ["Freelance",
+      "Part-time","One-time"],
   },
 ];
 
