@@ -1,9 +1,12 @@
 import React from 'react'
 import { Badge } from './ui/badge'
+import { ArrowRight, ArrowRightCircle } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const LatestJobscard = ({ job }) => {
+  const navigate=useNavigate();
   return (
-    <div className='p-5 rounded-xl shadow-lg bg-gray-900/60 backdrop-blur border border-yellow-100 
+    <div onClick={() => navigate(`/description/${job?._id}`)}  className='p-5 rounded-xl shadow-lg bg-gray-900/60 backdrop-blur border border-yellow-100 
                     hover:border-blue-500 hover:scale-105 transition-all duration-300 cursor-pointer'>
       
       {/* Company */}
@@ -29,6 +32,7 @@ const LatestJobscard = ({ job }) => {
         <Badge variant='ghost' className="bg-purple-600/20 text-purple-400 border border-purple-500">
           ₹ {job?.budget}
         </Badge>
+        
       </div>
     </div>
   )

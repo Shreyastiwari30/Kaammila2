@@ -20,7 +20,7 @@ const LatestJobs = () => {
           Job Openings
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {latestJobs.length === 0 ? (
             <span className="text-gray-300 text-center col-span-3">
               🚫 No Jobs Available
