@@ -42,8 +42,8 @@ const Applicants = () => {
 
   return (
     <div
-      className="min-h-screen text-white"
-      style={{ background: "linear-gradient(to left, #1f2937, #1d4ed8, #111827)" }}
+      className="min-h-screen text-white bg-gradient-to-br from-gray-900 via-purple-800 to-gray-900"
+      
     >
       <Navbar />
 

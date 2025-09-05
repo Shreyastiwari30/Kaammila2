@@ -27,7 +27,7 @@ const LatestJobscard = ({ job }) => {
           {job?.jobType}
         </Badge>
         <Badge variant='ghost' className="bg-purple-600/20 text-purple-400 border border-purple-500">
-          ₹ {job?.salary}
+          ₹ {job?.budget}
         </Badge>
       </div>
     </div>
