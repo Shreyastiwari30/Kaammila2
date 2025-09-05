@@ -14,6 +14,8 @@ const filterData = [
       "Tutoring & Lessons",
       "Pet Care",
       "Event Help",
+      "Freelance",
+      "Part-time",
       "Other"
     ],
   },

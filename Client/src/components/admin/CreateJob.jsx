@@ -149,6 +149,8 @@ const CreateJob = () => {
     <option value="Event Help">Event Help</option>
     <option value="Grocery Shopping">Grocery Shopping</option>
     <option value="Gardening">Gardening</option>
+    <option value="Gardening">Freelance</option>
+    <option value="Gardening">Part-time</option>
     <option value="Other">Other</option>
   </select>
 </div>
