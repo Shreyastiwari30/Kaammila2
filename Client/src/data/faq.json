@@ -1,149 +1,147 @@
 {
   "general": [
     {
-      "question": "What is KaamMila?",
-      "answer": "KaamMila is a hyperlocal micro-job marketplace connecting people in India for quick tasks like deliveries, repairs, tutoring, and more."
+      "questions": [
+        "What is KaamMila?",
+        "Tell me about KaamMila",
+        "How does KaamMila work?"
+      ],
+      "answer": "KaamMila is a hyperlocal micro-job marketplace in India that connects people for quick tasks such as deliveries, repairs, tutoring, cleaning, pet care, and more."
     },
     {
-      "question": "How do I create an account?",
-      "answer": "Click on 'Sign Up', provide your details, verify your email or phone number, and you're ready to go."
+      "questions": [
+        "Is KaamMila available only in Indore?",
+        "Where is KaamMila available?",
+        "Can I use KaamMila outside Indore?"
+      ],
+      "answer": "KaamMila is focused on Indore but is expanding to other cities in India. Some services are already available nationwide."
     },
     {
-      "question": "Is KaamMila free to use?",
-      "answer": "Yes, browsing and applying for jobs is free. Some premium features for visibility may be introduced in the future."
+      "questions": [
+        "Is KaamMila free?",
+        "Do I need to pay to use KaamMila?",
+        "Are there charges for using KaamMila?"
+      ],
+      "answer": "KaamMila is free to browse and post jobs. Workers and clients can connect directly. Certain premium features may be introduced in the future."
     },
     {
-      "question": "How do I post a job?",
-      "answer": "Log in, click 'Post a Job', fill in job details like category, description, location, and budget, then publish."
-    },
-    {
-      "question": "How do I apply for a job?",
-      "answer": "Browse available jobs, click on the one that interests you, and hit 'Apply Now'. The employer will review your application."
-    },
-    {
-      "question": "Is my payment secure?",
-      "answer": "Yes, all transactions go through secure channels. We recommend using the in-app payment feature for safety."
-    },
-    {
-      "question": "Can I use KaamMila outside Indore?",
-      "answer": "Currently, KaamMila focuses on Indore but is expanding to other Indian cities soon."
-    },
-    {
-      "question": "How can I contact support?",
-      "answer": "You can reach us via the 'Help & Support' section in the app or email us at support@kaammila.com."
+      "questions": [
+        "How do I contact support?",
+        "Is there customer care?",
+        "Where can I get help with KaamMila?"
+      ],
+      "answer": "You can reach KaamMila support through the Help & Support section in the app/website or by emailing support@kaammila.com."
     }
   ],
   "categories": {
     "Delivery & Pickup": [
       {
-        "question": "What type of delivery jobs are available?",
-        "answer": "You can find food delivery, parcel pickup/drop, and grocery delivery tasks."
-      },
-      {
-        "question": "Do I need a vehicle for delivery jobs?",
-        "answer": "Most tasks require a bike or scooter, but some small parcel deliveries can be done on foot."
+        "questions": [
+          "What delivery jobs are available?",
+          "Can I do food delivery?",
+          "Are there parcel or grocery delivery jobs?"
+        ],
+        "answer": "KaamMila offers delivery tasks such as food delivery, parcel drop-offs, grocery shopping, and small package pickups within your local area."
       }
     ],
     "House Cleaning": [
       {
-        "question": "What services are included in house cleaning?",
-        "answer": "Tasks may include dusting, mopping, bathroom cleaning, and kitchen deep cleaning."
-      },
-      {
-        "question": "Do I need to bring my own cleaning supplies?",
-        "answer": "Usually, clients provide supplies, but bringing your own is always a plus."
+        "questions": [
+          "What cleaning jobs are available?",
+          "Can I hire someone for house cleaning?",
+          "Are there part-time cleaners on KaamMila?"
+        ],
+        "answer": "House cleaning jobs include daily cleaning, deep cleaning, kitchen/bathroom cleaning, and part-time housekeeping."
       }
     ],
     "Repairs & Maintenance": [
       {
-        "question": "What kind of repair jobs can I find?",
-        "answer": "You can find jobs related to plumbing, electrical fixes, appliance repair, and carpentry."
-      },
-      {
-        "question": "Do I need to be a certified technician?",
-        "answer": "Certification is not mandatory, but verified workers with skills are preferred by clients."
+        "questions": [
+          "What repair jobs are available?",
+          "Can I find electricians or plumbers?",
+          "Does KaamMila provide appliance repair?"
+        ],
+        "answer": "You can find electricians, plumbers, carpenters, and appliance repair experts for small and urgent household fixes."
       }
     ],
     "Tutoring & Lessons": [
       {
-        "question": "What tutoring jobs are available?",
-        "answer": "You can find tutoring for school subjects, spoken English, coding, music, and more."
-      },
-      {
-        "question": "Can I teach online?",
-        "answer": "Yes, you can choose either offline (in-person) tutoring or online sessions based on the student’s preference."
+        "questions": [
+          "What kind of tutoring jobs are there?",
+          "Can I find online tuition?",
+          "Can I offer skill-based lessons?"
+        ],
+        "answer": "Tutoring jobs include school subject coaching, online classes, and skill-based lessons like coding, music, or languages."
       }
     ],
     "Pet Care": [
       {
-        "question": "What kind of pet care jobs are available?",
-        "answer": "Pet walking, feeding, grooming assistance, and short-term sitting are common tasks."
-      },
-      {
-        "question": "Do I need prior experience?",
-        "answer": "Basic pet handling knowledge is required. Experience with animals is an added advantage."
+        "questions": [
+          "Can I hire a pet sitter?",
+          "Are there dog walking jobs?",
+          "Does KaamMila offer pet grooming?"
+        ],
+        "answer": "Pet care jobs include dog walking, pet sitting, feeding, and basic grooming services."
       }
     ],
     "Event Help": [
       {
-        "question": "What event help jobs can I find?",
-        "answer": "You can find jobs like decoration setup, serving food, managing guests, and photography assistance."
-      },
-      {
-        "question": "Are these jobs one-time only?",
-        "answer": "Yes, most event jobs are short-term or one-day tasks."
+        "questions": [
+          "Can I hire event helpers?",
+          "Are there part-time staff for weddings?",
+          "Does KaamMila provide decorators or servers?"
+        ],
+        "answer": "Event help includes hiring servers, decorators, photographers, and general helpers for weddings, parties, and local functions."
       }
     ],
     "Grocery Shopping": [
       {
-        "question": "How does grocery shopping work on KaamMila?",
-        "answer": "Clients share a shopping list, and workers purchase and deliver items to their doorstep."
-      },
-      {
-        "question": "Do I need to pay upfront?",
-        "answer": "Usually, the client transfers money in advance through the app. For safety, avoid paying from your pocket."
+        "questions": [
+          "Can someone buy groceries for me?",
+          "Does KaamMila offer shopping help?",
+          "Are there jobs for grocery delivery?"
+        ],
+        "answer": "Yes, you can hire people to pick up groceries, medicines, and small items from local stores."
       }
     ],
     "Gardening": [
       {
-        "question": "What gardening jobs are available?",
-        "answer": "Jobs may include watering plants, trimming, landscaping, and seasonal planting."
-      },
-      {
-        "question": "Do I need to carry tools?",
-        "answer": "Most clients provide basic tools, but if you have your own, it’s beneficial."
+        "questions": [
+          "Can I hire a gardener?",
+          "Does KaamMila provide plant care?",
+          "Are there landscaping jobs?"
+        ],
+        "answer": "Gardening jobs include plant watering, lawn care, landscaping, and seasonal garden maintenance."
       }
     ],
     "Freelance": [
       {
-        "question": "What freelance jobs are posted?",
-        "answer": "Freelance jobs include graphic design, writing, digital marketing, and web development."
-      },
-      {
-        "question": "Can I work remotely?",
-        "answer": "Yes, freelance work is often remote and doesn’t require in-person presence."
+        "questions": [
+          "What freelance jobs are on KaamMila?",
+          "Can I find digital work?",
+          "Does KaamMila have online projects?"
+        ],
+        "answer": "Freelance jobs include graphic design, content writing, web development, and other short-term projects."
       }
     ],
     "Part-time": [
       {
-        "question": "What part-time jobs are on KaamMila?",
-        "answer": "Part-time jobs include shop assistants, office helpers, receptionists, and delivery staff."
-      },
-      {
-        "question": "What is the duration of part-time jobs?",
-        "answer": "It varies, but usually ranges from a few hours daily to weekly commitments."
-      }
-    ],
-    "Other": [
-      {
-        "question": "What if my job type is not listed?",
-        "answer": "You can post it under 'Other' and describe it clearly so workers can understand."
+        "questions": [
+          "Are there part-time jobs?",
+          "Can I find evening or weekend jobs?",
+          "Does KaamMila offer long-term roles?"
+        ],
+        "answer": "Part-time jobs include office help, shop assistants, event staff, and flexible roles suitable for students and part-timers."
       }
     ],
     "One-time": [
       {
-        "question": "What are one-time jobs?",
-        "answer": "These are single-day or single-task jobs like shifting help, installation, or small errands."
+        "questions": [
+          "What are one-time jobs?",
+          "Can I find short tasks?",
+          "Are there quick gig jobs on KaamMila?"
+        ],
+        "answer": "One-time jobs include small, quick tasks such as delivery, furniture shifting, or a few hours of work that do not require long-term commitment."
       }
     ]
   }

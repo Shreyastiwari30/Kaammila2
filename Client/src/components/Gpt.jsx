@@ -88,27 +88,32 @@ function Gpt() {
 
   const activeChat = chats.find((chat) => chat.id === activeChatId);
 
-  const findFAQAnswer = (query) => {
+const findFAQAnswer = (query) => {
   const lowerQ = query.toLowerCase();
 
-
+  
   for (let faq of faqData.general) {
-    if (lowerQ.includes(faq.question.toLowerCase().split(" ")[0])) {
-      return faq.answer;
+    for (let q of faq.questions) {
+      if (lowerQ.includes(q.toLowerCase())) {
+        return faq.answer;
+      }
     }
   }
 
   
   for (let category in faqData.categories) {
     for (let faq of faqData.categories[category]) {
-      if (lowerQ.includes(faq.question.toLowerCase().split(" ")[0]) || lowerQ.includes(category.toLowerCase())) {
-        return faq.answer;
+      for (let q of faq.questions) {
+        if (lowerQ.includes(q.toLowerCase())) {
+          return faq.answer;
+        }
       }
     }
   }
 
-  return null; 
+  return null;
 };
+
 
 
   return (
