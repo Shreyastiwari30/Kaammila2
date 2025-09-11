@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import faqData from "../data/faq.json";
+import { Delete, DeleteIcon, Trash } from "lucide-react";
 
 function Gpt() {
   const user = useSelector((store) => store.user);
@@ -178,10 +179,10 @@ function Gpt() {
                 </button>
                 <button
                   onClick={() => deleteChat(chat.id)}
-                  className="text-xs text-red-400 hover:text-red-300"
+                  className="text-xs text-red-400 hover:text-red-300  "
                   title="Delete Chat"
                 >
-                  ❌
+                  <Trash/>
                 </button>
               </div>
             </li>
