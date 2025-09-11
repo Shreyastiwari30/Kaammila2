@@ -6,7 +6,6 @@ import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import faqData from "../data/faq.json";
 
-
 function Gpt() {
   const user = useSelector((store) => store.user);
   const [chats, setChats] = useState(() => {
@@ -25,6 +24,13 @@ function Gpt() {
     if (!activeChatId) createNewChat();
   }, []);
 
+  const saveChats = (updatedChats, newActiveId = activeChatId) => {
+    setChats(updatedChats);
+    setActiveChatId(newActiveId);
+    localStorage.setItem("chats", JSON.stringify(updatedChats));
+    localStorage.setItem("activeChatId", newActiveId);
+  };
+
   const createNewChat = () => {
     const newChat = {
       id: Date.now().toString(),
@@ -32,89 +38,96 @@ function Gpt() {
       history: [],
     };
     const updated = [...chats, newChat];
-    setChats(updated);
-    setActiveChatId(newChat.id);
-    localStorage.setItem("chats", JSON.stringify(updated));
-    localStorage.setItem("activeChatId", newChat.id);
+    saveChats(updated, newChat.id);
+  };
+
+  const clearChat = (id) => {
+    const updatedChats = chats.map((chat) =>
+      chat.id === id ? { ...chat, history: [] } : chat
+    );
+    saveChats(updatedChats);
+  };
+
+  const deleteChat = (id) => {
+    const updatedChats = chats.filter((chat) => chat.id !== id);
+
+    if (updatedChats.length === 0) {
+      createNewChat();
+    } else {
+      const newActiveId =
+        id === activeChatId ? updatedChats[0].id : activeChatId;
+      saveChats(updatedChats, newActiveId);
+    }
   };
 
   const askQuestion = async () => {
-  if (!question.trim()) return;
+    if (!question.trim()) return;
 
-  
-  const faqAnswer = findFAQAnswer(question);
-  let parts;
+    const faqAnswer = findFAQAnswer(question);
+    let parts;
 
-  if (faqAnswer) {
-    parts = [faqAnswer];
-  } else {
-  
-    try {
-      const payload = { contents: [{ parts: [{ text: question }] }] };
+    if (faqAnswer) {
+      parts = [faqAnswer];
+    } else {
+      try {
+        const payload = { contents: [{ parts: [{ text: question }] }] };
 
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
 
-      const data = await response.json();
-      const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+        const data = await response.json();
+        const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
-      parts = raw
-        .split(/\n|\*\*\d+\.\s|\*\*/g)
-        .map((s) => s.trim())
-        .filter(Boolean);
-    } catch (err) {
-      console.error("Error:", err);
-      parts = ["Sorry, something went wrong. Please try again."];
+        parts = raw
+          .split(/\n|\*\*\d+\.\s|\*\*/g)
+          .map((s) => s.trim())
+          .filter(Boolean);
+      } catch (err) {
+        console.error("Error:", err);
+        parts = ["Sorry, something went wrong. Please try again."];
+      }
     }
-  }
 
-  
-  const newQA = { question, answers: parts };
+    const newQA = { question, answers: parts };
 
-  const updatedChats = chats.map((chat) =>
-    chat.id === activeChatId
-      ? { ...chat, history: [...chat.history, newQA] }
-      : chat
-  );
+    const updatedChats = chats.map((chat) =>
+      chat.id === activeChatId
+        ? { ...chat, history: [...chat.history, newQA] }
+        : chat
+    );
 
-  setChats(updatedChats);
-  localStorage.setItem("chats", JSON.stringify(updatedChats));
-  setQuestion("");
-};
-
+    saveChats(updatedChats);
+    setQuestion("");
+  };
 
   const activeChat = chats.find((chat) => chat.id === activeChatId);
 
-const findFAQAnswer = (query) => {
-  const lowerQ = query.toLowerCase();
+  const findFAQAnswer = (query) => {
+    const lowerQ = query.toLowerCase();
 
-  
-  for (let faq of faqData.general) {
-    for (let q of faq.questions) {
-      if (lowerQ.includes(q.toLowerCase())) {
-        return faq.answer;
-      }
-    }
-  }
-
-  
-  for (let category in faqData.categories) {
-    for (let faq of faqData.categories[category]) {
+    for (let faq of faqData.general) {
       for (let q of faq.questions) {
         if (lowerQ.includes(q.toLowerCase())) {
           return faq.answer;
         }
       }
     }
-  }
 
-  return null;
-};
+    for (let category in faqData.categories) {
+      for (let faq of faqData.categories[category]) {
+        for (let q of faq.questions) {
+          if (lowerQ.includes(q.toLowerCase())) {
+            return faq.answer;
+          }
+        }
+      }
+    }
 
-
+    return null;
+  };
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-r from-gray-800 via-purple-950 to-gray-900 text-gray-100">
@@ -135,28 +148,42 @@ const findFAQAnswer = (query) => {
           + New Chat
         </button>
 
-        <input
-          type="text"
-          placeholder="🔍 Search..."
-          className="bg-gray-800 text-white w-full rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500"
-        />
-
         <ul className="space-y-2 overflow-y-auto max-h-[65vh] pr-1">
           {chats.map((chat) => (
             <li
               key={chat.id}
-              onClick={() => {
-                setActiveChatId(chat.id);
-                localStorage.setItem("activeChatId", chat.id);
-                setSidebarOpen(false);
-              }}
-              className={`px-4 py-2 rounded-lg cursor-pointer transition ${
+              className={`flex justify-between items-center px-4 py-2 rounded-lg cursor-pointer transition ${
                 activeChatId === chat.id
                   ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md"
                   : "bg-gray-800/60 hover:bg-gray-700"
               }`}
             >
-              {chat.title}
+              <span
+                className="flex-1 truncate"
+                onClick={() => {
+                  setActiveChatId(chat.id);
+                  localStorage.setItem("activeChatId", chat.id);
+                  setSidebarOpen(false);
+                }}
+              >
+                {chat.title}
+              </span>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => clearChat(chat.id)}
+                  className="text-xs text-yellow-300 hover:text-yellow-200"
+                  title="Clear Chat"
+                >
+                  🧹
+                </button>
+                <button
+                  onClick={() => deleteChat(chat.id)}
+                  className="text-xs text-red-400 hover:text-red-300"
+                  title="Delete Chat"
+                >
+                  ❌
+                </button>
+              </div>
             </li>
           ))}
         </ul>
