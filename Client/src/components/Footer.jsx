@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
        
         <div>
-          <h2 className="text-2xl font-bold text-purple-500">KaamMila</h2>
+          <h2 className="text-2xl font-bold text-purple-500">KaamMila.com</h2>
           <p className="text-sm mt-2 text-gray-400">
             Connecting job seekers with real opportunities — instantly.
           </p>
@@ -46,7 +46,7 @@ const Footer = () => {
       </div>
 
       <div className="text-center text-gray-500 text-sm mt-10 border-t border-gray-800 pt-4">
-        © {new Date().getFullYear()} KaamMila. All rights reserved.
+        © {new Date().getFullYear()} KaamMila.com All rights reserved.
       </div>
     </footer>
     </div>
