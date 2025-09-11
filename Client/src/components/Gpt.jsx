@@ -4,6 +4,8 @@ import { url } from "../utils/constant";
 import { useSelector } from "react-redux";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import faqData from "../data/faq.json";
+
 
 function Gpt() {
   const user = useSelector((store) => store.user);
@@ -37,8 +39,16 @@ function Gpt() {
   };
 
   const askQuestion = async () => {
-    if (!question.trim()) return;
+  if (!question.trim()) return;
 
+  
+  const faqAnswer = findFAQAnswer(question);
+  let parts;
+
+  if (faqAnswer) {
+    parts = [faqAnswer];
+  } else {
+  
     try {
       const payload = { contents: [{ parts: [{ text: question }] }] };
 
@@ -51,28 +61,55 @@ function Gpt() {
       const data = await response.json();
       const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
-      const parts = raw
+      parts = raw
         .split(/\n|\*\*\d+\.\s|\*\*/g)
         .map((s) => s.trim())
         .filter(Boolean);
-
-      const newQA = { question, answers: parts };
-
-      const updatedChats = chats.map((chat) =>
-        chat.id === activeChatId
-          ? { ...chat, history: [...chat.history, newQA] }
-          : chat
-      );
-
-      setChats(updatedChats);
-      localStorage.setItem("chats", JSON.stringify(updatedChats));
-      setQuestion("");
     } catch (err) {
       console.error("Error:", err);
+      parts = ["Sorry, something went wrong. Please try again."];
     }
-  };
+  }
+
+  
+  const newQA = { question, answers: parts };
+
+  const updatedChats = chats.map((chat) =>
+    chat.id === activeChatId
+      ? { ...chat, history: [...chat.history, newQA] }
+      : chat
+  );
+
+  setChats(updatedChats);
+  localStorage.setItem("chats", JSON.stringify(updatedChats));
+  setQuestion("");
+};
+
 
   const activeChat = chats.find((chat) => chat.id === activeChatId);
+
+  const findFAQAnswer = (query) => {
+  const lowerQ = query.toLowerCase();
+
+
+  for (let faq of faqData.general) {
+    if (lowerQ.includes(faq.question.toLowerCase().split(" ")[0])) {
+      return faq.answer;
+    }
+  }
+
+  
+  for (let category in faqData.categories) {
+    for (let faq of faqData.categories[category]) {
+      if (lowerQ.includes(faq.question.toLowerCase().split(" ")[0]) || lowerQ.includes(category.toLowerCase())) {
+        return faq.answer;
+      }
+    }
+  }
+
+  return null; 
+};
+
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gradient-to-r from-gray-800 via-purple-950 to-gray-900 text-gray-100">
