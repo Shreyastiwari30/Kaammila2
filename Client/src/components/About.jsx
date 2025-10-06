@@ -83,7 +83,7 @@ const About = () => {
             Ready to get started?
           </h2>
           <p className="text-gray-300 mb-6">
-            Join thousands who are already earning on KaamMila.com
+            Join thousands who are already earning on Taskora.com
           </p>
           <Link
             to="/signup"
