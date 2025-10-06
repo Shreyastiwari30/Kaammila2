@@ -25,7 +25,7 @@ const About = () => {
         </svg>
         <section className="bg-gradient-to-br from-purple-950 to-violet-800 py-16 text-center px-6">
           <h1 className="text-4xl font-bold mb-4">
-            About <span className="text-orange-400">KaamMila.com</span>
+            About <span className="text-orange-400">Taskora</span>
           </h1>
           <p className="max-w-3xl mx-auto text-gray-300 text-lg">
             Empowering every individual to find work fast — from microtasks to
@@ -38,7 +38,7 @@ const About = () => {
             Who We Are
           </h2>
           <p className="text-gray-300 leading-relaxed max-w-5xl mx-auto">
-            KaamMila.com is a hyperlocal micro-job platform built for the next
+            Taskora is a hyperlocal micro-job platform built for the next
             billion. Our mission is to reduce unemployment by enabling quick,
             trusted, and fair work opportunities in your neighborhood. Whether
             you're a student, freelancer, daily wage earner, or skilled worker,
